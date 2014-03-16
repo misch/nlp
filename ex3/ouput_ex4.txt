@@ -1,0 +1,7 @@
+The following bigrams occur more than 600 times: 
+
+3997: 		('of', 'the')
+1392: 		('to', 'the')
+1342: 		('in', 'the')
+867: 		('to', 'be')
+669: 		('that', 'the')
