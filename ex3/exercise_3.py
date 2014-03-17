@@ -1,3 +1,4 @@
+#!/usr/bin/python
 s = "Keep it short and simple!"
 n = 3
 

@@ -1,7 +1,8 @@
+#!/usr/bin/python
 import re
 import collections
 
-word_expression = re.compile("<?/?[a-zA-Z]+>?")
+word_expression = re.compile("<?/?[a-zA-Z.,]+>?")
 
 f = open('input_ex4.txt','r')
 initial_split = word_expression.findall(f.read())
