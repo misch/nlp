@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\begin{document}
+\section*{Exercise 1.a)}
+$n = 1'000'000$
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c|r|r|c}
+	\textbf{Observed} 		& \textit{Agatha}	& not \textit{Agatha} 	& total \\\hline
+	\textit{Christie} 		& $20$ 				& $97$ 					& $117$	\\
+	not \textit{Christie} 	& $10$	 			& $999'873$				& $999'883$ \\ \hline
+    total 					& $30$	 			& $999970$ 				& $1'000'000$
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c|r|r|c}
+	\textbf{Probabilites} 	& \textit{Agatha}	& not \textit{Agatha} 	& total 		\\\hline
+	\textit{Christie} 		& $0.00002$			& $0.000097$ 			& $0.000177$	\\
+	not \textit{Christie} 	& $0.00001$			& $0.999873$			& $0.999883$ 	\\\hline
+    total 					& $0.00003$	 		& $0.99997$				& $1$
+\end{tabular}
+\end{table}
+
+\noindent Our hypothesis is that the words \textit{Agatha} and \textit{Christie} are independent. Following this assumption, we have
+$$P(\textit{Agatha Christie}) = P(\textit{Agatha}) \cdot P(\textit{Christie}) = 0.00003 \cdot 0.000177 = 0.5 \cdot 10^{-8}.$$
+\noindent The direct estimation from the table above gives
+$$P(\textit{Agatha Christie}) = \frac{20}{1'000'000} = 0.2 \cdot 10^{-4}.$$
+
+\noindent Based on the observed data we can build a Bernoulli model with parameters
+\begin{align*}
+\bar{x} &= p = 0.2 \cdot 10^{-4}, \\
+	\sigma^2 &= p\,(1-p) \, \approx \, 0.2 \cdot 10^{-4}.
+\end{align*}
+
+\noindent Comparing the two models we get 
+$$ t_{obs} = \sqrt{n} \, \frac{\bar{x} - \mu}{\sigma} = 1000 \cdot \frac{0.2 \cdot 10^{-4} - 0.5 \cdot 10^{-8}}{\sqrt{0.2 \cdot 10^{-4}}} \approx 4.471.$$
+
+\noindent From the normal table, with a significance level of $1\%$ and dof\footnote{dof = degrees of freedom} = $\infty$, we can get the critical value $t_{lim} = 2.576$. The fact that $t_{obs} > t_{lim}$ means that the hypothesis from above is rejected. Therefore, the words \textit{Agatha} and \textit{Christie} are \textbf{not} independent.
+
+\end{document}
