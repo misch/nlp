@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\begin{document}
+\section*{Exercise 1.b)}
+Following the exact same steps as in exercise 1. a), we get the following values:
+
+\begin{align*}
+P(\textit{Agatha}) &= \frac{200}{1'000'000} = 0.0002, \\
+P(\textit{Christie}) &= \frac{300}{1'000'000} = 0.0003. \\
+\end{align*}
+With the Null-Hypothesis we get the mean value
+
+$$\mu_0 = p_0 = P(\textit{Agatha}) \cdot P(\textit{Christie}) = 6 \cdot 10^{-8}.$$
+
+\noindent Directly computation from the data gives the sample mean and sample variance
+
+\begin{align*}
+\bar{X} &= p = P(\textit{Agatha Christie}) = \frac{6}{1'000'000} = 6 \cdot 10^{-6}, \\
+s^2 &= p \cdot (1-p) \approx p = 6 \cdot 10^{-6}.
+\end{align*}
+
+\noindent Therefore, we get a t-value of 
+$$t_{obs} = \frac{\bar{X} - \mu_0}{\sqrt{\frac{s^2}{n}}} \approx 2.425 $$
+
+
+\noindent From the normal table, with a significance level of $1\%$ and dof\footnote{dof = degrees of freedom} = $\infty$, we can get the critical value $t_{lim} = 2.576$. The fact that $t_{obs} < t_{lim}$ means that the Null-Hypothesis is not rejected. Therefore, the words \textit{Agatha} and \textit{Christie} appear independently in the text.
+
+\end{document}
