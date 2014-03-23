@@ -1,0 +1,76 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\begin{document}
+\section*{Exercise 2.b)}
+The expected values remain the same as in exercise 2.a):
+
+\begin{table}[h]
+\centering
+\begin{tabular}{r|r r|r}
+	\textbf{Expected} 	& \textit{Woman}						& not \textit{Woman} 					& total \\ \hline
+    \textit{I} 		& $333 $ 	& $667$ 	& $1'000$ \\
+	not \textit{I} 	& $19'667$	& $39'333$	& $59'000$ \\ \hline
+    total 			& $20'000$	& $40'000$	& $60'000$
+\end{tabular}
+\end{table}
+
+\noindent The given observed data is
+\begin{table}[h]
+\centering
+\begin{tabular}{r|r r|r}
+	\textbf{Observed} 		& \textit{Woman}	& not \textit{Woman} 	& total \\\hline
+	\textit{I} 		& $450$ 				& $550$ 				& $1'000$	\\
+	not \textit{I} 	& $19'550$	 			& $39'450$				& $59'000$ \\ \hline
+    total 			& $20'000$	 			& $40'000$ 				& $60'000$
+\end{tabular}
+\end{table}
+
+\noindent and therefore $\chi^2$ is given by
+\begin{align*}
+\chi^2 &= \sum_{i=1}^4 \frac{(O_i - E_i)^2}{E_i} \\
+&= \frac{(450-333)^2}{333} + \frac{(550 - 667)^2}{667} + \frac{(19'550-19'667)^2}{19'667} + \frac{(39'450-39'333)^2}{39'333} \\
+& \approx 62.67541.
+\end{align*}
+
+
+
+\noindent For a significance level of $1\%$ and dof\footnote{dof = degrees of freedom} = 1, the critical value for $\chi^2$ is $6.635$. 
+Because $\chi^2 \approx 62.67541 > 6.635$, it's clear that the Null-Hypothesis is \textbf{not} accepted and that there \textbf{is} a correlation between the term \textit{I} and female authors.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
