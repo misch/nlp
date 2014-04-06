@@ -26,12 +26,12 @@ for word in initial_dict:
         for letter in alphabet:
             new_word = list(word)
             new_word[idx] = letter
-            new_word = "".join(new_word)
+            new_word = "".join(new_word).lower()
             if new_word in english_dict:
                 new_dict.add(new_word)
 
 out = open('output_ex2.txt','w')
 
-for word in new_dict:
+for word in sorted(new_dict):
     out.write(word+"\n")
 out.close()

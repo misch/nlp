@@ -10,12 +10,12 @@ for line in f:
     matches = expression.findall(line)
     for word in matches:
         word = word.translate(None,'.,')
-        words.add(word.strip())
+        words.add(word.strip().lower())
 f.close()
 
 out = open('output_ex1.txt','w')
 
-for word in words:
+for word in sorted(words):
     out.write(word+"\n")
 
 out.close()
