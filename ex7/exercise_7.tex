@@ -7,6 +7,8 @@
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
+\newcommand{\WP}{\text{WP}}
+\newcommand{\CF}{\text{CF}}
 
 \title{Your Paper}
 
@@ -111,8 +113,7 @@ $$
 we can see that the probability of ending in state D after 6 transitions is $0.10.981$
 
 \section*{Exercise 4}
-\subsection*{a) Forward algorithm}
-Given sentence: O = \{coffee,coffee,lemonade\}. 
+Given sequence of observations: O = \{coffee,coffee,lemonade\}. 
 
 \vspace{5mm}
 \noindent Probability matrix:
@@ -131,16 +132,16 @@ Given sentence: O = \{coffee,coffee,lemonade\}.
   CF & 0.6 & 0.1 & 0.3 \\
   WP & 0.1 & 0.7 & 0.2 \\
 \end{tabular}
-
+\subsection*{a) Forward algorithm}
 \vspace{5mm}
 \begin{tabular}{| c | c | p{3cm} | p{3cm} | p{3cm}|}
   \hline
   state \textbackslash time & $t_0(\text{coffee})$ & $t_1(\text{coffee})$ & $t_2(\text{lemonade})$ & $t_3$\\ \hline
   %
   %
-  $\alpha_t(\text{CF})$ 	& 1 & $1 \cdot 0.7 \cdot 0.6 = 0.42$ 	& $0.42 \cdot 0.7 \cdot 0.6 \newline + 0.18 \cdot 0.5 \cdot 0.1 \newline = 0.1854$ & $0.1854 \cdot 0.7 \cdot 0.3 \newline + 0.0846 \cdot 0.5 \cdot 0.2 \newline = 0.04739$\\ \hline
+  $\alpha_t(\CF)$ 	& 1 & $1 \cdot 0.7 \cdot 0.6 = 0.42$ 	& $0.42 \cdot 0.7 \cdot 0.6 \newline + 0.18 \cdot 0.5 \cdot 0.1 \newline = 0.1854$ & $0.1854 \cdot 0.7 \cdot 0.3 \newline + 0.0846 \cdot 0.5 \cdot 0.2 \newline = 0.04739$\\ \hline
   %
-  $\alpha_t(\text{WP})$ 	& 0 & $1 \cdot 0.3 \cdot 0.6 = 0.18$	& $0.42 \cdot 0.3 \cdot 0.6 \newline + 0.18 \cdot 0.5 \cdot 0.1 \newline = 0.0846$ & $0.1854 \cdot 0.3 \cdot 0.3 + 0.0846 \cdot 0.5 \cdot 0.2 \newline = 0.02515$ \\ \hline
+  $\alpha_t(\WP)$ 	& 0 & $1 \cdot 0.3 \cdot 0.6 = 0.18$	& $0.42 \cdot 0.3 \cdot 0.6 \newline + 0.18 \cdot 0.5 \cdot 0.1 \newline = 0.0846$ & $0.1854 \cdot 0.3 \cdot 0.3 + 0.0846 \cdot 0.5 \cdot 0.2 \newline = 0.02515$ \\ \hline
   %
   P[cof,cof,lem] & 1 & 0.6	& 0.27 & 0.07254 \\ \hline
 \end{tabular}
@@ -151,12 +152,34 @@ Given sentence: O = \{coffee,coffee,lemonade\}.
   state \textbackslash time & $t_0(\text{coffee})$ & $t_1(\text{coffee})$ & $t_2(\text{lemonade})$ & $t_3$\\ \hline
   %
   %
-  $\alpha_t(\text{CF})$ 	& $0.171 \cdot 0.7 \cdot 0.6 \newline + 0.0275 \cdot 0.3 \cdot 0.6 \newline = 0.07677 $ 	& $0.3 \cdot 0.7 \cdot 0.6 \newline + 0.25 \cdot 0.3 \cdot 0.6 \newline = 0.171$ 	& $1.0 \cdot 0.7 \cdot 0.3 \newline + 1.0 \cdot 0.3 \cdot 0.3 \newline = 0.3$ 	& $1.0$		\\ \hline
+  $\alpha_t(\CF)$ 	& $0.162 \cdot 0.7 \cdot 0.6 \newline + 0.025 \cdot 0.3 \cdot 0.6 \newline = 0.07254 $ 	& $0.3 \cdot 0.7 \cdot 0.6 \newline + 0.2 \cdot 0.3 \cdot 0.6 \newline = 0.162$ 	& $1.0 \cdot 0.7 \cdot 0.3 \newline + 1.0 \cdot 0.3 \cdot 0.3 \newline = 0.3$ 	& $1.0$		\\ \hline
   %f
-  $\alpha_t(\text{WP})$ 	& $0.171 \cdot 0.5 \cdot 0.1 \newline + 0.0275 \cdot 0.5 \cdot 0.1 \newline = 0.009925$ 	& $0.3 \cdot 0.5 \cdot 0.1 \newline + 0.25 \cdot 0.5 \cdot 0.1 \newline = 0.0275$ 	& $1.0 \cdot 0.5 \cdot 0.2 \newline + 1.0 \cdot 0.5 \cdot 0.3 \newline = 0.25$ 		& $1.0$ 	\\ \hline
+  $\alpha_t(\WP)$ 	& $0.162 \cdot 0.5 \cdot 0.1 \newline + 0.025 \cdot 0.5 \cdot 0.1 \newline = 0.00935$ 	& $0.3 \cdot 0.5 \cdot 0.1 \newline + 0.2 \cdot 0.5 \cdot 0.1 \newline = 0.025$ 	& $1.0 \cdot 0.5 \cdot 0.2 \newline + 1.0 \cdot 0.5 \cdot 0.2 \newline = 0.2$ 		& $1.0$ 	\\ \hline
   %
-  P[cof,cof,lem] & $0.867$ &	&  &  \\ \hline
+  P[cof,cof,lem] & $0.07254$ &	&  &  \\ \hline
 \end{tabular}
 
 \subsection*{c)}
+
+\begin{tabular}{| c | c | c | p{4cm} | p{4cm}|}
+  \hline
+  state \textbackslash time & $t_0(\text{coffee})$ & $t_1(\text{coffee})$ & $t_2(\text{lemonade})$ & $t_3$\\ \hline
+  %
+  %
+  $\delta_t(\CF)$ 	& 1 & $0.42$ 	& $Max[\CF: 0.42 \cdot 0.7 \cdot 0.6 = 0.1764; \WP: 0.18 \cdot 0.5 \cdot 0.1 = 0.009] = 0.1764$ & $Max[\CF: 0.1764 \cdot 0.7 \cdot 0.3 = 0.03704; \WP: 0.0756 \cdot 0.5 \cdot 0.2 = 0.00756] = 0.03704$ \\ \hline
+  %
+  $\delta_t(\WP)$ 	& 0 & $0.18$	& $Max[\CF: 0.42 \cdot 0.3 \cdot 0.6 = 0.0756; \WP: 0.18 \cdot 0.5 \cdot 0.1 = 0.009] = 0.0756$ & $Max[\CF: 0.1764 \cdot 0.3 \cdot 0.3 = 0.01588; \WP: 0.0756 \cdot 0.5 \cdot 0.2 = 0.00756] = 0.01588$ \\ \hline
+  %
+  %
+  $\psi_t(\CF)$&  & \CF	& \CF & \CF \\ \hline
+  %
+  $\psi_t(\WP)$&  & \CF	& \CF & \CF \\ \hline
+  %
+  $x_t$ & \CF & \CF & \CF &  \\ \hline
+\end{tabular}
+
+\vspace{5mm}
+\noindent For the given observations O = \{coffee,coffee,lemonade\}, the most probable sequence of states is therefore \{\CF, \CF, \CF\}.
+
+
 \end{document}
