@@ -1,0 +1,96 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{a4paper,left=25mm,right=30mm} 
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{qtree}
+\usetikzlibrary{arrows}
+\newcommand{\ra}{$\rightarrow$ }
+\newcommand{\f}{-- \textbf{fail}}
+
+
+\title{Your Paper}
+
+\author{You}
+
+\date{\today}
+
+\begin{document}
+\section*{Exercise 1 -- Top down strategy}
+\subsection*{a) ``Book that flight''}
+Using the top down strategy, the following parse trees will be constructed until the sentence ``Book that flight.'' can be matched:
+
+\vspace{3mm}
+\begin{tabular}{| c | l | c |}
+\hline 
+\textbf{step} & \textbf{list of nodes} & \textbf{rule}  \\ \hline
+init & [S:] & S \ra NP VP \\
+1 & [S: [NP, VP]] & NP \ra det NOM \\
+2 & [S: [NP: [det, NOM], VP]] & det \ra that \\
+3 & [S: [NP: [det: that \f, NOM], VP]] & det \ra this \\
+4 & [S: [NP: [det: this \f, NOM], VP]] & det \ra a \\
+5 & [S: [NP: [det: a \f, NOM], VP]] & NP \ra PropN \\
+6 & [S: [NP: [PropN], VP]] & PropN \ra Huston \\
+7 & [S: [NP: [PropN: Huston \f], VP]] & PropN \ra TWA \\
+8 & [S: [NP: [PropN: TWA \f], VP]] & S \ra Aux NP VP \\
+9 & [S: [Aux, NP, VP]] & Aux \ra does \\
+10 & [S: [Aux: does \f, NP, VP]] & S \ra VP \\
+11 & [S: [VP]] & VP \ra verb NP \\
+12 & [S: [VP:[verb, NP]]] & verb \ra book \\
+13 & [S: [VP:[verb: book, NP]]] & NP \ra det NOM \\
+14 & [S: [VP:[verb: book, NP: [det, NOM]]]] & det \ra that \\
+15 & [S: [VP:[verb: book, NP: [det: that, NOM]]]] & NOM \ra noun \\
+16 & [S: [VP:[verb: book, NP: [det: that, NOM:[noun]]]]]] & noun \ra book \\
+17 & [S: [VP:[verb: book, NP: [det: that, NOM:[noun: book \f]]]]]] & noun \ra flight \\
+\textbf{18} & [S: [VP:[verb: book, NP: [det: that, NOM:[noun: flight]]]]]] & noun \ra meal \\
+\hline
+\end{tabular}
+
+\vspace{3mm}
+(First) Matching parse tree:
+\Tree [.S [.VP [.verb book ] [.NP [.det that ] [.NOM [.noun flight ] ] ] ] ]
+
+\vspace{3mm}
+\noindent In general, the top down strategy does not necessarily stop when a matching tree is found. There could be multiple matching trees, but in this example this is not the case -- applying all the possible other rules will lead to non-matching trees.
+
+\subsection*{b) ``Does this flight include a meal?''}
+\begin{tabular}{| c | l | c |}
+\hline 
+\textbf{step} & \textbf{list of nodes} & \textbf{rule}  \\ \hline
+init & [S:] & S \ra NP VP \\
+$\hdots$ & $\hdots$ \f & S \ra Aux NP VP \\
+9 & [S: [Aux, NP, VP]] & Aux \ra does \\
+10 & [S: [Aux: does, NP, VP]] & NP \ra det NOM\\
+11 & [S: [Aux: does, NP: [det, NOM], VP]] & det \ra that\\
+12 & [S: [Aux: does, NP: [det: that \f, NOM], VP]] & det \ra this \\
+13 & [S: [Aux: does, NP: [det: this, NOM], VP]] & det \ra this \\
+14 & [S: [Aux: does, NP: [det: this, NOM], VP]] & NOM \ra noun \\
+15 & [S: [Aux: does, NP: [det: this, NOM: [noun]], VP]] & noun \ra book \\
+16 & [S: [Aux: does, NP: [det: this, NOM: [noun: book \f]], VP]] & noun \ra flight \\
+17 & [S: [Aux: does, NP: [det: this, NOM: [noun: flight]], VP]] & VP \ra verb NP \\
+18 & [S: [$\hdots$ , VP: [verb, NP]]] & verb \ra book\\
+19 & [S: [$\hdots$ , VP: [verb: book \f, NP]]] & verb \ra include \\
+20 & [S: [$\hdots$ , VP: [verb: include, NP]]] & NP \ra det NOM \\
+21 & [S: [$\hdots$ , VP: [verb: include, NP: [det, NOM]]]] & det \ra that \\
+22 & [S: [$\hdots$ , VP: [verb: include, NP: [det: that \f, NOM]]]] & det \ra this \\
+23 & [S: [$\hdots$ , VP: [verb: include, NP: [det: this \f, NOM]]]] & det \ra a \\
+24 & [S: [$\hdots$ , VP: [verb: include, NP: [det: a, NOM]]]] & NOM \ra noun \\
+25 & [S: [$\hdots$ , VP: [verb: include, NP: [det: a, NOM: [noun]]]]] & noun \ra book \\
+26 & [S: [$\hdots$ , VP: [verb: include, NP: [det: a, NOM: [noun: book \f]]]]] & noun \ra flight \\
+27 & [S: [$\hdots$ , VP: [verb: include, NP: [det: a, NOM: [noun: flight \f]]]]] & noun \ra meal \\
+\textbf{28} & [S: [$\hdots$ , VP: [verb: include, NP: [det: a, NOM: [noun: meal]]]]] & \\
+\hline
+\end{tabular}
+
+\vspace{3mm}
+\noindent (First) Matching parse tree:
+
+\Tree [.S [.Aux does ] [.NP [.det this ] [.NOM [.noun flight ]]] [.VP [.verb include ] [.NP [.det a ] [.NOM [.noun meal ] ] ] ] ]
+
+
+
+\end{document}

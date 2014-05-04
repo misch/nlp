@@ -1,3 +1,10 @@
 *.idea/
 ex3/input_ex1.txt
+
+#PyCharm
 *.pyc
+
+# LaTex
+*.aux
+*.log
+*.gz

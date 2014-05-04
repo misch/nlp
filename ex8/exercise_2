@@ -1,0 +1,71 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{a4paper,left=25mm,right=30mm} 
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{qtree}
+\usetikzlibrary{arrows}
+\newcommand{\ra}{$\rightarrow$ }
+\newcommand{\f}{-- \textbf{fail}}
+
+
+\title{Your Paper}
+
+\author{You}
+
+\date{\today}
+
+\begin{document}
+\section*{Exercise 2 -- Bottom up strategy}
+\subsection*{a) ``Book that flight''}
+
+\vspace{3mm}
+\begin{tabular}{| c | l | l | l |}
+\hline 
+\textbf{step} & \textbf{list of nodes} & \textbf{subsequence} & \textbf{rule}  \\ \hline
+init & \textit{book} \textit{that} \textit{flight} & \textit{book} & noun \ra book  \\
+1 & noun \textit{that} \textit{flight} & noun & NOM \ra noun  \\
+2 & NOM \textit{that} \textit{flight} & \textit{that} & det \ra that  \\
+3 & NOM det \textit{flight} & \textit{flight} & noun \ra flight \\
+4 & NOM det noun & noun & NOM \ra noun \\
+5 & NOM det NOM & det NOM & NP \ra det NOM \\
+6 & NOM NP & NOM NP & nothing applicable \f \\
+7 & \textit{book} \textit{that} \textit{flight} & \textit{book} & verb \ra book \\
+8 & verb \textit{that} \textit{flight} & verb & VP \ra verb \\
+9 & VP \textit{that} \textit{flight} & VP & S \ra VP  \f \\
+10 & verb \textit{that} \textit{flight} & \textit{that} & det \ra \textit{that} \\
+11 & verb det \textit{flight} & \textit{flight} & noun \ra \textit{flight} \\
+12 & verb det noun & noun & NOM \ra noun \\
+13 & verb det NOM & det NOM & NP \ra det NOM \\
+14 & verb NP & verb NP & VP \ra verb NP \\
+15 & VP & VP & S \ra VP \\
+
+\hline
+\end{tabular}
+
+\subsection*{b) ``Does this flight include a meal?''}
+\begin{tabular}{| c | l | l | l |}
+\hline 
+\textbf{step} & \textbf{list of nodes} & \textbf{subsequence} & \textbf{rule}  \\ \hline
+init & \textit{does this flight include a meal} & \textit{does} & Aux \ra does  \\
+init & Aux \textit{this flight include a meal} & \textit{does} & Aux \ra does  \\
+init & Aux \textit{this flight include a meal} & \textit{this} & det \ra this  \\
+init & Aux det \textit{flight include a meal} & \textit{flight} & noun \ra flight \\
+init & Aux det noun \textit{include a meal} & noun & NOM \ra noun \\
+init & Aux det NOM \textit{include a meal} & det NOM & NP \ra det NOM \\
+init & Aux NP \textit{include a meal} & \textit{include} & verb \ra include \\
+init & Aux NP verb \textit{a meal} & verb & VP \ra verb \\
+init & Aux NP VP \textit{a meal} & Aux NP NP & S \ra Aux NP VP \f \\
+init & Aux NP verb \textit{a meal} & \textit{a} & det \ra a \\
+init & Aux NP verb det \textit{meal} & \textit{meal} & noun \ra meal \\
+init & Aux NP verb det noun & noun & NOM \ra noun \\
+init & Aux NP verb det NOM & det NOM & NP \ra det NOM \\
+init & Aux NP verb NP & verb NP & VP \ra verb NP \\
+init & Aux NP VP & Aux NP VP & S \ra Aux NP VP \\
+\hline
+\end{tabular}
+\end{document}
