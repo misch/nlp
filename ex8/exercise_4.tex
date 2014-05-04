@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{a4paper,left=25mm,right=30mm} 
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{qtree}
+\usetikzlibrary{arrows}
+\newcommand{\lra}{$\longrightarrow$ }
+\newcommand{\f}{-- \textbf{fail}}
+\newcommand{\fact}{\text{Factor }}
+\newcommand{\term}{\text{Term }}
+\newcommand{\oor}{ ~ \vert ~ }
+
+
+\title{Your Paper}
+
+\author{You}
+
+\date{\today}
+
+\begin{document}
+\section*{Exercise 4}
+$G = (N,T,P,S)$. The terminals $T$ are given by $T = \{\text{number}, \text{variable}, +, -, \cdot, /\}$, the non-terminals are given by $N = \{ \text{Term}, \text{Factor}, S, A \}$. we have the following production rules $P$:
+
+\begin{align*}
+ S &\longrightarrow \term \oor \term \text{addExpression } S \\
+ \text{Term} &\longrightarrow \fact \oor \fact \text{multExpression } \fact \\
+ \fact &\longrightarrow \text{number} \oor \text{variable} \\
+ \\
+ \text{addExpression} &\longrightarrow + \oor - \\
+ \text{multExpression} &\longrightarrow \cdot \oor /
+\end{align*}
+
+\noindent The fact that the start symbol $S$ only allows Terms but not Factors as following non-terminals, ensures that the multiplication/division are parsed as nodes \emph{within} terms. 
+One could also understand it as first splitting the nodes at the +'s in order to not wrongly split factors.
+
+\subsection*{example}
+\begin{itemize}
+ \item The only matching parse tree for $1 + 2\cdot a + b$ is: \\ \\ \Tree [.S  [.Term [.Factor [number ]] ] [.addExpression + ] !\qsetw{0.1cm} [.S [.Term [.Factor number ] [.multExpression $\cdot$ ] [.Factor variable ]] [.addExpression + ] !\qsetw{0.1cm} [.S [.Term [.Factor variable ]]]]]
+\end{itemize}
+
+
+\end{document}
