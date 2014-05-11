@@ -58,11 +58,11 @@ P[T_k \vert \bar{C_i}] &= \frac{80}{1'050} \approx  0.07619
 
 \subsection*{d) Compute Information Gain IG}
 \begin{align*} 
-\text{IG}(T_k,C_i) &= &P[T_k,C_i] \cdot \log_2 \left( \frac{P[T_k,C_i]}{P[T_k] P[C_i]}\right) + P[\bar{T_k},C_i] \cdot \log_2 \left( \frac{P[\bar{T_k},C_i]}{P[\bar{T_k}] P[C_i]}\right) \\
-&&+ P[T_k,\bar{C_i}] \cdot \log_2 \left( \frac{P[T_k,\bar{C_i}]}{P[T_k] P[\bar{C_i}]}\right) + P[\bar{T_k},\bar{C_i}] \cdot \log_2 \left( \frac{P[\bar{T_k},\bar{C_i}]}{P[\bar{T_k}] P[\bar{C_i}]}\right) \\
-&= &0.025 \cdot (-0.304511) + \frac{900}{2000} \cdot \log_2 \left( \frac{\frac{900}{2000}}{0.935 \cdot 0.475}\right) \\
-&&+ \frac{80}{2000} \cdot \log_2 \left( \frac{\frac{80}{2000}}{0.065 \cdot 0.525}\right) + \frac{970}{2000} \cdot \log_2 \left( \frac{\frac{970}{2000}}{0.935 \cdot 0.525}\right) \\
-&\approx 0.00166
+\text{IG}(T_k,C_i) &= P[T_k,C_i] \cdot \log_2 \left( \frac{P[T_k,C_i]}{P[T_k] P[C_i]}\right) + P[\bar{T_k},C_i] \cdot \log_2 \left( \frac{P[\bar{T_k},C_i]}{P[\bar{T_k}] P[C_i]}\right) \\
+&+ P[T_k,\bar{C_i}] \cdot \log_2 \left( \frac{P[T_k,\bar{C_i}]}{P[T_k] P[\bar{C_i}]}\right) + P[\bar{T_k},\bar{C_i}] \cdot \log_2 \left( \frac{P[\bar{T_k},\bar{C_i}]}{P[\bar{T_k}] P[\bar{C_i}]}\right) \\
+&= \frac{50}{2000} \cdot \log_2\left(\frac{2000 \cdot 50}{130 \cdot 950} \right) + \frac{900}{2000} \cdot \log_2 \left( \frac{900 \cdot 2000}{1870 \cdot 950}\right) \\
+&+ \frac{80}{2000} \cdot \log_2 \left(\frac{80 \cdot 2000}{130 \cdot 1050} \right) + \frac{970}{2000} \cdot \log_2 \left(\frac{970 \cdot 2000}{1870 \cdot 1050} \right) \\
+&\approx 0.001661
 \end{align*}
 
 \end{document}
