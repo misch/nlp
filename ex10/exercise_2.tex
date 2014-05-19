@@ -1,0 +1,67 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+%\usepackage{geometry}
+%\geometry{a4paper,left=25mm,right=30mm} 
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{slashbox}
+%\usepackage[colorinlistoftodos]{tod4notes}
+\usepackage{qtree}
+\usepackage{here}
+%\usetikzlibrary{arrows}
+
+\begin{document}
+\section*{Exercise 2 -- Kullback-Leibler Divergence}
+\subsection*{a)}
+As a first step, we compute the term frequencies from the given table:
+\begin{table}[h]
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
+\textbf{Profile} & \textbf{A1} & \textbf{A2} & \textbf{A3} & \textbf{Q} \\ \hline
+\textbf{tf} & \textbf{233} & \textbf{281} & \textbf{139} & \textbf{140} \\ \hline
+term1 & 20 & 21 & 3 & 25\\ \hline
+term2 & 36 & 100 & 23 & 40\\ \hline
+term3 & 90 & 100 & 12 & 45 \\ \hline
+term4 & 75 & 3 & 67 & 10 \\ \hline
+term5 & 12 & 57 & 34 & 20 \\ \hline
+\end{tabular}
+\caption{Term frequencies \textbf{tf}}
+\end{table}
+
+\noindent We can compute the author profile by computing the relative term frequency. We use Laplace smoothing with $\lambda = 1$.
+\begin{table}[h]
+\centering
+\begin{tabular}{| c | c | c | c | c | c | c |}
+\hline
+\textbf{Profile} & \textbf{A1} & \textbf{A2} & \textbf{A3} & \textbf{Q} \\ \hline
+term1 &0.02702703  & 0.20903955  & 0.72661871 & 0.19047619  \\
+term2 &0.71171171 & 0.25988701 & 0.04316547 & 0.14285714 \\
+term3 &0.0990991  & 0.17514124 & 0.05035971 & 0.28571429 \\
+term4 &0.10810811 & 0.18644068 & 0.17266187 & 0.23809524 \\
+term5 &0.05405405 & 0.16949153 & 0.00719424 & 0.14285714] \\ \hline
+\end{tabular}
+\end{table}
+
+The Kullback-Leibler Divergence for the query text $Q$ and the author $A_j$ is then given by
+$$KLD(Q || A_j) = \sum_{i=1}^m q(t_i) \cdot \log_2 \left( \frac{q(t_i)}{a_j(t_i)} \right),$$
+where $m$ is the number of features, $q(t_i)$ and $a_j(t_i)$ are the occurrence probabilities for term $t_i$ in $Q$ or $A_j$, respectively. Therefore we have
+\begin{align*}
+KLD(Q || A_1) &=  0.38845693 \\
+KLD(Q || A_2) &=  0.19389402 \\
+KLD(Q || A_3) &=  0.96495801 
+\end{align*}
+
+
+\subsection*{b)}
+Using the same computations as above, we get the following values for the Kullback-Leibler divergence for the given table:
+\begin{align*}
+KLD(Q || A_1) &=  1.11360837 \\
+KLD(Q || A_2) &=  0.10161531 \\
+KLD(Q || A_3) &=  1.32055294 
+\end{align*}
+
+\end{document}
