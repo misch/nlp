@@ -2,7 +2,7 @@
 
 import numpy as np
 
-def doStuff(A1, A2, A3, Q):
+def computeKDL(A1, A2, A3, Q):
     m_string = ';'.join([' '.join(map(str,x)) for x in [A1, A2, A3, Q]])
     m = np.matrix(m_string, dtype=np.float)
     m_rel = np.transpose((m+1)/(m.sum(axis=1)+5))
@@ -23,7 +23,7 @@ def doA():
     A2 = [21, 100, 100, 3, 57]
     A3 = [3, 23, 12, 67, 34]
     Q = [25, 40, 45, 10, 20]
-    doStuff(A1,A2,A3,Q)
+    computeKDL(A1,A2,A3,Q)
 
 
 def doB():
@@ -31,7 +31,6 @@ def doB():
     A2 = [36,45,30,32,29]
     A3 = [100,5,6,23,0]
     Q = [3,2,5,4,2]
-
-    doStuff(A1,A2,A3,Q)
+    computeKDL(A1,A2,A3,Q)
 
 doA()
